@@ -21,6 +21,8 @@ version = 'trunk-SNAPSHOT'
 
 description = """spring-stomp-chat"""
 
+defaultTasks 'clean', 'build'
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 

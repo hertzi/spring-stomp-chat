@@ -1,7 +1,5 @@
 package com.theotherian.chat;
 
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.converter.MessageConverter;
@@ -11,6 +9,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import java.util.List;
+
 /**
  * Set up our websocket configuration, which uses STOMP, and configure our endpoints
  */
@@ -18,33 +18,29 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-  @Override
-  public void configureMessageBroker(MessageBrokerRegistry config) {
-    config.enableSimpleBroker("/queue", "/topic");
-    config.setApplicationDestinationPrefixes("/app");
-  }
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/queue", "/topic");
+        config.setApplicationDestinationPrefixes("/app");
+    }
 
-  @Override
-  public void registerStompEndpoints(StompEndpointRegistry registry) {
-    registry.addEndpoint("/chat", "/activeUsers").withSockJS();
-  }
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/chat", "/activeUsers")
+                .withSockJS();
+    }
 
-  @Override
-  public void configureClientInboundChannel(ChannelRegistration channelRegistration) {
-  }
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration channelRegistration) {
+    }
 
-  @Override
-  public void configureClientOutboundChannel(ChannelRegistration channelRegistration) {
-  }
+    @Override
+    public void configureClientOutboundChannel(ChannelRegistration channelRegistration) {
+    }
 
-  //@Override
-  public boolean configureMessageConverters(List<MessageConverter> converters) {
-    return true;
-  }
-  
-  @Bean
-  public ActiveUserService activeUserService() {
-    return new ActiveUserService();
-  }
+    @Bean
+    public ActiveUserService activeUserService() {
+        return new ActiveUserService();
+    }
 
 }
