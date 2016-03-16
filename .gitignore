@@ -1,4 +1,7 @@
-/target
+target/
 /.settings
 /.classpath
 /.project
+build/
+.idea/
+spring-stomp-chat.iml
