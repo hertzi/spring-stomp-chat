@@ -22,8 +22,8 @@ public class ChatSchedulingConfigurer implements SchedulingConfigurer {
     }
 
     @Bean
-    public ActiveUserPinger activeUserPinger() {
-        return new ActiveUserPinger();
+    public ActiveUserPinger activeUserPinger(SimpMessagingTemplate template, ActiveUserService activeUserService) {
+        return new ActiveUserPinger(template, activeUserService);
     }
 
     @Override
